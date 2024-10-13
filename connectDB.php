@@ -75,5 +75,17 @@ class DB
         return $posts;
     }
 
+    public static function login($username, $password)
+    {
+        $sql = "SELECT token FROM `users` WHERE username='".$username."' and password=$password ";
+        $result = self::$connect->query($sql);
+        $auth= $result->fetch_row();
+        if (is_null($auth)) {
+            return null;
+        } else {
+            return $auth;
+        }
+    }
+
 }
 
