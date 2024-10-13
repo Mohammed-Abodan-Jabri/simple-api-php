@@ -34,5 +34,18 @@ class DB
         return $post;
     }
 
+    // getPosts=> return list of posts
+    public static function getPosts()
+    {
+        $sql = "SELECT * FROM posts";
+        $result = self::$connect->query($sql);
+        $posts = [];
+        while ($row = $result->fetch_assoc()) {
+            $posts[] = $row;
+        }
+        return $posts;
+
+    }
+
 }
 
