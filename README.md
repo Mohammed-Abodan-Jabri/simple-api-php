@@ -25,12 +25,12 @@ Request Body (JSON):
   "username": "user@example.com",
   "password": "your_password"
 }
-
 Response:
-200 OK: Returns a token if authentication is successful.
-400: Invalid JSON formatInvalid JSON format.
+200 OK: Returns a token upon successful authentication.
+400 Bad Request: If the JSON format is invalid.
 404 Not Found: If the user is not found.
-500 Internal Server Error: If the username or password is not supplied.
+500 Internal Server Error: If username or password is not supplied.
+
 ===========================================================================================  
 2. Post Management
 -Retrieve All Posts:
