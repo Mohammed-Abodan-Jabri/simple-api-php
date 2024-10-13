@@ -59,5 +59,21 @@ class DB
         return $result->fetch_row();
     }
 
+    // getPostsAuthor=> return all post for   specific Author
+    public static function getPostsAuthor(int $id)
+    {
+        // $id ==> Author_Id
+        $sql = "SELECT posts.*, authors.name AS author_name 
+                FROM posts, authors
+                WHERE posts.autherId = authors.id 
+                AND posts.autherId =$id";
+        $result = self::$connect->query($sql);
+        $posts = [];
+        while ($row = $result->fetch_assoc()) {
+            $posts[] = $row;
+        }
+        return $posts;
+    }
+
 }
 
