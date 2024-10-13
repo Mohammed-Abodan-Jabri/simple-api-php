@@ -49,7 +49,7 @@ class DB
     }
 
     // getAuthor=> return ِِAuthor name for specific post
-    public static function getAuthor(int $id)
+    public static function getAuthorByPostId(int $id)
     {
         $sql = "SELECT posts.*, authors.name AS author_name 
                 FROM posts, authors
@@ -57,6 +57,24 @@ class DB
                 AND posts.id =$id";
         $result = self::$connect->query($sql);
         return $result->fetch_row();
+    }
+    // getAuthor=> return determine Author Depending on the ID passed
+    public static function getAuthor(int $id)
+    {
+        $sql = "SELECT authors.* FROM  authors
+                WHERE  authors.id=$id";
+        $result = self::$connect->query($sql);
+        return $result->fetch_row();
+    }
+    public static function getAuthors()
+    {
+        $sql = "SELECT * FROM authors";
+        $result = self::$connect->query($sql);
+        $authors = [];
+        while ($row = $result->fetch_assoc()) {
+            $authors[] = $row;
+        }
+        return $authors;
     }
 
     // getPostsAuthor=> return all post for   specific Author
