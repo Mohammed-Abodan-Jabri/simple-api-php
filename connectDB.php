@@ -25,6 +25,14 @@ class DB
             throw new Exception('Failed to close connected to DB');
         }
     }
+    // getPost=> return determine post Depending on the ID passed
+    public static function getPost(int $id)
+    {
+        $sql = "SELECT * FROM posts WHERE id=$id";
+        $result = self::$connect->query($sql);
+        $post = $result->fetch_row();
+        return $post;
+    }
 
 }
 
