@@ -1,6 +1,5 @@
 
 # Ignore specific files
-/users
 /users-oop
 config.php
 DB1.php
