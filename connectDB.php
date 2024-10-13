@@ -25,6 +25,7 @@ class DB
             throw new Exception('Failed to close connected to DB');
         }
     }
+
     // getPost=> return determine post Depending on the ID passed
     public static function getPost(int $id)
     {
@@ -45,6 +46,17 @@ class DB
         }
         return $posts;
 
+    }
+
+    // getAuthor=> return ِِAuthor name for specific post
+    public static function getAuthor(int $id)
+    {
+        $sql = "SELECT posts.*, authors.name AS author_name 
+                FROM posts, authors
+                WHERE posts.autherId = authors.id 
+                AND posts.id =$id";
+        $result = self::$connect->query($sql);
+        return $result->fetch_row();
     }
 
 }
