@@ -5,8 +5,21 @@ include '../connectDB.php';
 // Set the content type to JSON for the response
 header('Content-Type:application/json');
 
-// Open a connection to the database
-$con = DB::connectToDB();
+// check from connection to the database
+try {
+    // Connect to the database
+    DB::connectToDB();
+} catch (Exception $e) {
+    // Handle any connection errors
+    $result = [
+        "status" => 500,
+        "message" => "Database connection failed: " . $e->getMessage(), // Error message with exception details
+        "data" => null
+    ];
+    // Output the error response and terminate the script
+    echo json_encode($result);
+    die();
+}
 
 // Initialize an empty result array
 $result = [];
